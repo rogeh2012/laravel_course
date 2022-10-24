@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-
+    public $timestamp = false;
 
     protected $fillable = [
         'title',
@@ -17,7 +17,7 @@ class Post extends Model
     ];
 
     public function user() {
-        
+
         return $this->belongsTo(User::class);
     }
 }

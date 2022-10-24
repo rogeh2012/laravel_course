@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Pagination\CursorPaginator;
 
 class PostController extends Controller
 {
@@ -13,7 +14,8 @@ class PostController extends Controller
         $allPosts=Post::all();
 
         return view('posts.index', [
-            'posts' => $allPosts
+            'posts' => $allPosts,
+            'posts' => Post::paginate(50)
         ]);
     }
 

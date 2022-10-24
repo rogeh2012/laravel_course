@@ -25,7 +25,7 @@
                     @if( $post->user )
                     <td> {{ $post->user->name }} </td>
                     @else
-                    <td></td>
+                    <td>Unknown</td>
                     @endif
                     <td> {{ $post->created_at->format('Y/m/d') }}</td>
                     <td>
@@ -77,5 +77,8 @@
         </tbody>
     </table>
 
+    {{ $posts->links() }}
 </div>
+
+
 @endsection
