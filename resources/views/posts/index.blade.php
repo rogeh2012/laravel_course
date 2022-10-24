@@ -20,11 +20,16 @@
             @foreach ($posts as $post)
                 <tr>
                     <th scope="row">{{ $post['id'] }}</th>
-                    <td>{{ $post['title'] }}</td>
-                    <td>{{ $post['posted_by'] }}</td>
-                    <td> {{ $post['creation_date'] }}</td>
-                    <td>
+                    <td> {{ $post->title}} </td>
 
+                    @if( $post->user )
+                    <td> {{ $post->user->name }} </td>
+                    @else
+                    <td></td>
+                    @endif
+                    <td> {{ $post->created_at->format('Y/m/d') }}</td>
+                    <td>
+                        {{-- format('l jS \of F Y h:i:s A') --}}
                         <form  style="display:inline" action="{{ route('posts.show', $post['id']) }}" method="get">
                             @csrf
                             <x-button color=info action=View></x-button>
@@ -36,11 +41,11 @@
                         </form>
 
                         <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
+                            data-bs-target="#exampleModal{{$post['id']}}">
                             Delete
                         </button>
 
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        <div class="modal fade" id="exampleModal{{$post['id']}}" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -50,7 +55,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure you want to delete???
+                                        Are you sure you want to delete?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-sm btn-secondary"

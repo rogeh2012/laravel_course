@@ -8,9 +8,9 @@
                 Post Info
             </div>
             <div class="card-body">
-                <h5 class="card-title">Title: Special title treatment</h5>
+                <h5 class="card-title">Title: {{ $post->title }}</h5>
                 <h6>Description:</h6>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"> {{ $post->description }}</p>
             </div>
 
         </div>
@@ -23,10 +23,11 @@
             </div>
 
             <div class="card-body">
-                <h5 class="card-title">ID: {{ $postId }}<span></span> </h5>
-                <h5 class="card-title">Name: <span></span> </h5>
-                <h5 class="card-title">Email: <span></span> </h5>
-                <h5 class="card-title">Created At: <span></span> </h5>
+                {{-- <h5 class="card-title">ID: {{ $postId }}<span></span> </h5> --}}
+                {{-- <h5 class="card-title">Title: {{ $post->title }} <span></span> </h5> --}}
+                <h5 class="card-title">Name: {{ $post->user->name }}  </h5>
+                <h5 class="card-title">Email: {{ $post->user->email }}  </h5>
+                <h5 class="card-title">Created At: {{ $post->created_at->format('l jS \of F Y h:i:s A') }}  </h5>
 
             </div>
 
