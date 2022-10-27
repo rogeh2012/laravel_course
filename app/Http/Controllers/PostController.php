@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Pagination\CursorPaginator;
 
@@ -41,9 +42,10 @@ class PostController extends Controller
 
     public function show($postId)
     {
+        $comments = Comment::where('commentable_id', $postId)->where('commentable_type', 'post')->get();
         $post = Post::where('id', $postId)->first();
 
-        return view('posts.show', ['postId' => $postId, 'post' => $post]);
+        return view('posts.show', ['postId' => $postId, 'post' => $post,'comments' => $comments]);
     }
 
     public function edit($postId)

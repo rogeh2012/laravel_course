@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +16,22 @@ use App\Http\Controllers\PostController;
 */
 
 
-// Route::get('/posts', [PostController::class,'index'])->name('posts.index');
-// Route::get('/posts/create', [PostController::class,'create'])->name('posts.create');
-// Route::post('/posts/store', [PostController::class,'store'])->name('posts.store');
-// Route::get('/posts/{post}', [PostController::class,'show'])->name('posts.show');
-// Route::get('/posts/{post}/edit', [PostController::class,'edit'])->name('posts.edit');
-// Route::put('/posts/{post}', [PostController::class,'update'])->name('posts.update');
-// Route::delete('/posts/{post}', [PostController::class,'destroy'])->name('posts.destroy');
+Route::get('/posts', [PostController::class,'index'])->name('posts.index');
+Route::get('/posts/create', [PostController::class,'create'])->name('posts.create');
+Route::post('/posts/store', [PostController::class,'store'])->name('posts.store');
+Route::get('/posts/{post}', [PostController::class,'show'])->name('posts.show');
+// Route::get('/posts/{post}', [CommentController::class,'show'])->name('posts.show');
+Route::get('/posts/{post}/edit', [PostController::class,'edit'])->name('posts.edit');
+Route::put('/posts/{post}', [PostController::class,'update'])->name('posts.update');
+Route::delete('/posts/{post}', [PostController::class,'destroy'])->name('posts.destroy');
 
 
-Route::resource('posts', PostController::class);
+// Route::get('/comments/create', [CommentController::class,'create'])->name('comments.create');
+
+Route::post('/comments/store', [CommentController::class,'store'])->name('comments.store');
+Route::delete('/comment/{post}', [CommentController::class,'destroy'])->name('comments.destroy');
+
+
+// Route::resource('posts', PostController::class);
+
+
