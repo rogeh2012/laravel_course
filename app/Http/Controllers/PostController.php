@@ -29,15 +29,23 @@ class PostController extends Controller
 
     public function store()
     {
-        // $data = request()->all();
-        // dd($data);
-        Post::create([
-            'title' => request()->title,
-            'description' => request()->description,
-            'user_id' => request()->created_by
+        request()->validate([
+            'title'=>['required','min:3','string','unique:posts'],
+            'description'=>['required','min:10'],
         ]);
 
-        return redirect('/posts');
+        request()->all();
+        if (!User::find(request()->user_id)) {
+            return back()->with('failed', 'Invalid Data');
+        } else {
+            Post::create([
+                'title' => request()->title,
+                'description' => request()->description,
+                'user_id' => request()->created_by
+            ]);
+
+            return redirect('/posts');
+        }
     }
 
     public function show($postId)
@@ -50,7 +58,6 @@ class PostController extends Controller
 
     public function edit($postId)
     {
-
         $users = User::all();
 
         $post = Post::where('id', $postId)->first();
@@ -59,6 +66,10 @@ class PostController extends Controller
     }
     public function update($postId)
     {
+        request()->validate([
+            'title'=>['required','min:3'],
+            'description'=>['required','min:10']
+        ]);
         $post = Post::find($postId);
 
         $post->title = request()->title;
@@ -66,6 +77,8 @@ class PostController extends Controller
         $post->user_id = request()->created_by;
 
         $post->save();
+
+
         return redirect('/posts');
     }
     public function destroy($postId)

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('include')
+@section('content')
     </header>
     <main class="text-center">
         <a href="{{ route('posts.create') }}" class="btn btn-lg btn-success m-5">Create Post</a>

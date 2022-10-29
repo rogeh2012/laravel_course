@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('include')
+@section('content')
     </header>
     <main class="m-4 container">
         <div class="card">

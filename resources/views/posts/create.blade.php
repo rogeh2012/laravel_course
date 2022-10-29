@@ -1,5 +1,13 @@
 @extends('layouts.app')
-@section('include')
+@section('content')
+
+@if(session()->has('failed'))
+
+    <div class="alert  mt-2 alert-success">
+        {{ session()->get('failed') }}
+    </div>
+
+@endif
     </header>
     <form action="{{ route('posts.store') }}" method="POST" class=" container w-75 m-5">
         @csrf
