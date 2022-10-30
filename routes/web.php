@@ -33,6 +33,7 @@ Route::delete('/comment/{post}', [CommentController::class,'destroy'])->name('co
 
 
 // Route::resource('posts', PostController::class);
+Route::get('users',[\App\Http\Controllers\UserController::class,'index']);
 
 
 

@@ -12,6 +12,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Posted By</th>
                     <th scope="col">Created At</th>
+                    <th scope="col">Slug</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -27,6 +28,8 @@
                             <td>Unknown</td>
                         @endif
                         <td> {{ $post->created_at->format('Y/m/d') }}</td>
+                        <td> {{ $post->slug }}</td>
+
                         <td>
                             {{-- format('l jS \of F Y h:i:s A') --}}
                             <form style="display:inline" action="{{ route('posts.show', $post['id']) }}" method="get">

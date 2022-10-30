@@ -7,11 +7,16 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Pagination\CursorPaginator;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+use App\jobs\PruneOldPostsJob;
+
 
 class PostController extends Controller
 {
     public function index()
     {
+        // dispatch(new PruneOldPostsJob());
+        PruneOldPostsJob::dispatch();
         $allPosts=Post::all();
 
         return view('posts.index', [
